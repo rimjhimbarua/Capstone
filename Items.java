@@ -6,6 +6,8 @@ Purpose: Item Class for products purchased by customers
  */
 package Capstone;
 
+import java.util.*;
+
 public class Items {
     
     private int itemSKU;
@@ -15,6 +17,7 @@ public class Items {
     private boolean itemSold;
     
     public static int nextItemID = 100;
+    private ArrayList<Items> itemsToSell = new ArrayList<>();
     
     public Items(String itemName, int quantity, double price, boolean itemSold) {
         this.itemName = itemName;
@@ -55,12 +58,15 @@ public class Items {
         return this.itemSold;
     }
     
-    //The act of selling an item -> WILL CHANGE FOR TRANSACTION
-    public boolean sellItem() {
-        if (itemSold == true) {
-            return true;
+    //The act of selling an item 
+    public void sellItem(Items items) {
+        if(this.itemsToSell.size() > 0) {
+            itemsToSell.remove(items);
+            
+        } else {
+            System.out.println("No items to sell.");
         }
-        return false;
+        
     }
     
     //toString for an item 
